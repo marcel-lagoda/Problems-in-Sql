@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>203dc969-79fc-45f2-ab26-f1a03f55150f.SCHEMA:baza</OriginalElement>
+  <nodes>
+    <node x="65.0" y="0.0">203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.employees</node>
+    <node x="342.25" y="0.0">203dc969-79fc-45f2-ab26-f1a03f55150f.VIEW:baza.AllData</node>
+    <node x="89.25" y="227.0">203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.phones</node>
+    <node x="0.0" y="401.0">203dc969-79fc-45f2-ab26-f1a03f55150f.VIEW:baza.Company_structure</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.phones" target="203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.employees">
+      <point x="0.0" y="-64.5" />
+      <point x="42.75" y="88.5" />
+    </edge>
+    <edge source="203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.employees" target="203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.employees">
+      <point x="-42.75" y="88.5" />
+      <point x="107.75" y="197.0" />
+      <point x="45.0" y="197.0" />
+      <point x="45.0" y="88.5" />
+      <point x="-85.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.893542757417103" x="291.0" y="276.5" />
+  <SelectedNodes>
+    <node>203dc969-79fc-45f2-ab26-f1a03f55150f.TABLE:baza.phones</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
