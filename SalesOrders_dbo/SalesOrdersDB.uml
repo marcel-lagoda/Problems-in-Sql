@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Categories</OriginalElement>
+  <nodes>
+    <node x="248.0" y="817.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.ztblPriceRanges</node>
+    <node x="859.0" y="0.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Employees</node>
+    <node x="0.0" y="322.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Vendors</node>
+    <node x="750.0" y="817.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.ztblSeqNumbers</node>
+    <node x="0.0" y="817.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.ztblMonths</node>
+    <node x="761.0" y="382.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Orders</node>
+    <node x="519.0" y="817.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.ztblPurchaseCoupons</node>
+    <node x="578.0" y="12.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Customers</node>
+    <node x="286.0" y="370.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Products</node>
+    <node x="609.875" y="644.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Order_Details</node>
+    <node x="146.0" y="644.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Product_Vendors</node>
+    <node x="286.0" y="96.0">0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Categories</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Order_Details" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Orders">
+      <point x="53.75" y="-64.0" />
+      <point x="771.125" y="619.0" />
+      <point x="848.5" y="619.0" />
+      <point x="0.0" y="76.0" />
+    </edge>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Orders" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Customers">
+      <point x="-43.75" y="-76.0" />
+      <point x="804.75" y="297.0" />
+      <point x="708.5" y="297.0" />
+      <point x="0.0" y="124.0" />
+    </edge>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Product_Vendors" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Products">
+      <point x="48.75" y="-64.0" />
+      <point x="292.25" y="619.0" />
+      <point x="354.0" y="619.0" />
+      <point x="-68.0" y="88.0" />
+    </edge>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Product_Vendors" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Vendors">
+      <point x="-48.75" y="-64.0" />
+      <point x="194.75" y="619.0" />
+      <point x="133.0" y="619.0" />
+      <point x="0.0" y="136.0" />
+    </edge>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Products" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Categories">
+      <point x="0.0" y="-88.0" />
+      <point x="0.0" y="40.0" />
+    </edge>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Orders" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Employees">
+      <point x="43.75" y="-76.0" />
+      <point x="892.25" y="297.0" />
+      <point x="988.5" y="297.0" />
+      <point x="0.0" y="136.0" />
+    </edge>
+    <edge source="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Order_Details" target="0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Products">
+      <point x="-53.75" y="-64.0" />
+      <point x="663.625" y="619.0" />
+      <point x="490.0" y="619.0" />
+      <point x="68.0" y="88.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.40062597809076683" x="559.0" y="629.0" />
+  <SelectedNodes>
+    <node>0fc46154-65de-41e8-8189-0141cebea6f2.TABLE:SalesOrdersExample.dbo.Categories</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
