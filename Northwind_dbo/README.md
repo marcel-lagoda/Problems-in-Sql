@@ -71,6 +71,9 @@ There are 57 beginning, intermediate and advanced SQL challenges in total.
 55. [First order in each country.]()
 56. [Customers with multiple orders in 5 day period.]()
 57. [Customers with multiple orders in 5 day period, version 2.]()
+
+
+---
  
 ## Northwind DB Schema
 
