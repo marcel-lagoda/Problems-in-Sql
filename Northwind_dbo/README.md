@@ -45,32 +45,32 @@ There are 57 beginning, intermediate and advanced SQL challenges in total.
 
 #### Advanced Problems
 
-32. High-value customers.
-33. High-value customers - total orders.
-34. High-value customers - with discount.
-35. Month-end orders.
-36. Orders with many line items.
-37. Orders - random assortment.
-38. Orders - accidental double-entry.
-39. Orders - accidental double-entry details.
-40. Orders - accidental double-entry details, derived table.
-41. Late orders.
-42. Late orders - which employees?
-43. Late orders vs. total orders.
-44. Late orders vs. total orders - missing employee.
-45. Late orders vs. total orders - fix null.
-46. Late orders vs. total orders - percentage.
-47. Late orders vs. total orders - fix decimal.
-48. Customer grouping.
-49. Customer grouping - fix null.
-50. Customer grouping with percentage.
-51. Customer grouping - flexible.
-52. Countries with suppliers or customers.
-53. Countries with suppliers or customers, version 2.
-54. Countries with suppliers or customers - version 3.
-55. First order in each country.
-56. Customers with multiple orders in 5 day period.
-57. Customers with multiple orders in 5 day period, version 2.
+32. [High-value customers.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L3-L35)
+33. [High-value customers - total orders.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L40-L57)
+34. [High-value customers - with discount.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L40-L57)
+35. [Month-end orders.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L40-L57)
+36. [Orders with many line items.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L40-L57)
+37. [Orders - random assortment.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L107-L114)
+38. [Orders - accidental double-entry.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L107-L114)
+39. [Orders - accidental double-entry details.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L107-L114)
+40. [Orders - accidental double-entry details, derived table.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L162-L176)
+41. [Late orders.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L178-L186)
+42. [Late orders - which employees?](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L178-L186)
+43. [Late orders vs. total orders.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L178-L186)
+44. [Late orders vs. total orders - missing employee.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L247-L274)
+45. [Late orders vs. total orders - fix null.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L277-L297)
+46. [Late orders vs. total orders - percentage.]()
+47. [Late orders vs. total orders - fix decimal.]()
+48. [Customer grouping.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L422-L444)
+49. [Customer grouping - fix null.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-advanced-problems.sql#L422-L444)
+50. [Customer grouping with percentage.]()
+51. [Customer grouping - flexible.]()
+52. [Countries with suppliers or customers.]()
+53. [Countries with suppliers or customers, version 2.]()
+54. [Countries with suppliers or customers - version 3.]()
+55. [First order in each country.]()
+56. [Customers with multiple orders in 5 day period.]()
+57. [Customers with multiple orders in 5 day period, version 2.]()
  
 ## Northwind DB Schema
 
