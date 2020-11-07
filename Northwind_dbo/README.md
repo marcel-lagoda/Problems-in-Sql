@@ -7,25 +7,26 @@ There are 57 beginning, intermediate and advanced SQL challenges in total.
  
 #### Introductory Problems
 
-1. Which shippers do we have?
-2. Certain fields from Categories.
-3. Sales Representatives.
-4. Sales Representatives in the United States.
-5. Orders placed by specific EmployeeID.
-6. Suppliers and Contact Titles.
-7. Products with “queso” in ProductName.
-8. Orders shipping to France or Belgium.
-9. Orders shipping to any country in Latin America.
-10. Employees, in order of age.
-11. Showing only the Date with a DateTime field.
-12. Employees full name.
-13. OrderDetails amount per line item.
-14. How many customers?
-15. When was the first order?
-16. Countries where there are customers.
-17. Contact titles for customers.
-18. Products with associated supplier names.
-19. Orders and the Shipper that was used.
+1. [Which shippers do we have?](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L5)
+2. [Certain fields from Categories.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L8-L12)
+3. [Sales Representatives.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L14-L23)
+4. [Sales Representatives in the United States.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L25-L35)
+5. [Orders placed by specific EmployeeID.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L40-L53)
+6. [Suppliers and Contact Titles.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L55-L63)
+7. [Products with “queso” in ProductName.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L65-L72)
+8. [Orders shipping to France or Belgium.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L74-L83)
+9. [Orders shipping to any country in Latin America.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L85-L90)
+10. [Employees, in order of age.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L92-L102)
+11. [Showing only the Date with a DateTime field.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L104-L111)
+12. [Employees full name.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L113-L122)
+13. [OrderDetails amount per line item.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L113-L122)
+14. [How many customers?](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L138-L141)
+15. [When was the first order?](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L143-L146)
+16. [Countries where there are customers.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L143-L146)
+17. [Contact titles for customers.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L157-L165)
+18. [Products with associated supplier names.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L167-L176)
+19. [Orders and the Shipper that was used.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L178-L188)
+
 
 #### Intermediate Problems
 
