@@ -30,18 +30,18 @@ There are 57 beginning, intermediate and advanced SQL challenges in total.
 
 #### Intermediate Problems
 
-20. Categories, and the total products in each category.
-21. Total customers per country/city.
-22. Products that need reordering.
-23. Products that need reordering,continued.
-24. Customer list by region.
-25. High freight charges.
-26. High freight charges - 2015.
-27. High freight charges with between.
-28. High freight charges - last year.
-29. Inventory list.
-30. Customers with no orders.
-31. Customers with no orders for EmployeeID 4.
+20. [Categories, and the total products in each category.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L4-L13)
+21. [Total customers per country/city.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L15-L26)
+22. [Products that need reordering.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L28-L39)
+23. [Products that need reordering,continued.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L41-L55)
+24. [Customer list by region.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L41-L55)
+25. [High freight charges.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L41-L55)
+26. [High freight charges - 2015.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L41-L55)
+27. [High freight charges with between.]()
+28. [High freight charges - last year.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L96-L108)
+29. [Inventory list.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L110-L123)
+30. [Customers with no orders.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L125-L134)
+31. [Customers with no orders for EmployeeID 4.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-intermediate-problems.sql#L136-L152)
 
 #### Advanced Problems
 
