@@ -2,8 +2,8 @@
 
 ## Description
 
-This file contains solutions to the book 'SQL Practice Problems' by Sylvia Moestl Vasilik.
-There are 57 beginning, intermediate and advanced challenges in total.
+This file contains solutions to the book _SQL Practice Problem_ by Sylvia Moestl Vasilik.
+There are 57 beginning, intermediate and advanced SQL challenges in total.
  
 ## DB Schema
 
