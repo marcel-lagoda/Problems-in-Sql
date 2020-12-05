@@ -111,6 +111,27 @@ from employees e
 order by IF(m.manager_id is null, 1, 0), m.manager_id, m.name;
 
 
+-- Wersja 3. (using recursive CTE)
+with recursive recursive_CTE as (
+    select id
+         , name
+         , manager_id
+         , 1 Level
+    from employees e
+    where manager_id is null
+    union all
+    select e.id
+         , e.name
+         , e.manager_id
+         , Level + 1
+    from employees as e
+             inner join recursive_CTE as CTE on CTE.id = e.manager_id
+)
+select *
+from recursive_CTE
+order by Level desc;
+
+
 -- ----------------------------------------------
 /*
 create view Company_structure as
