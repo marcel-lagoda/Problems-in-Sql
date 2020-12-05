@@ -5,15 +5,15 @@
 
 Opierając się na poniższych danych stwórz tabele i napisz zapytania SQL realizujące poniższe zagadnienia.
 
-1. Wypisz wszystkich ludzi wraz z imieniem przełożonego, posortuj po imieniu przeożonego.
-Ludzi, ktorych przełożony jest nieznany, wypisz na koncu.
-2. Wypisz osoby które nie mają przełożonego, posortuj po dacie zatrudnienia.
-3. Jak ma na imię przełożony przełożonego Mateusza?
-4. Wskaż imię najmłodszego z obecnych pracowników Barbary, który rozpoczął pracę po 2017 roku.
-5. Dla każdej osoby mającej bezpośrednich pracowników wypisz średni wiek jej pracowników.
-6. Wskaż numery telefonów osób zatrudnionych w firmie od 2019 roku.
-7. Wskaż najczęściej wybieraną markę telefonów wraz z liczbą osób, które ją wybrały. Wpisz po przecinku
-imiona tych osób
+1. [Wypisz wszystkich ludzi wraz z imieniem przełożonego, posortuj po imieniu przeożonego.
+Ludzi, ktorych przełożony jest nieznany, wypisz na koncu.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L75-L132)
+2. [Wypisz osoby które nie mają przełożonego, posortuj po dacie zatrudnienia.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L155-L169)
+3. [Jak ma na imię przełożony przełożonego Mateusza?](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L163-L169)
+4. [Wskaż imię najmłodszego z obecnych pracowników Barbary, który rozpoczął pracę po 2017 roku.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L173-L183)
+5. [Dla każdej osoby mającej bezpośrednich pracowników wypisz średni wiek jej pracowników.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L187-L197)
+6. [Wskaż numery telefonów osób zatrudnionych w firmie od 2019 roku.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L222-L229)
+7. [Wskaż najczęściej wybieraną markę telefonów wraz z liczbą osób, które ją wybrały. Wpisz po przecinku
+imiona tych osób](https://github.com/marcel-lagoda/Problems-in-Sql/blob/2803f738532759a302308a231de5e08b962e9245/Zad_1/Zadanie_1.sql#L233-L245)
 ---
 
 ```employees table```
