@@ -1,16 +1,61 @@
-
 -- 2. Intermediate Problems
 
 -- 20. For this problem, we’d like to see the total number of
 -- products in each category. Sort the results by the total
 -- number of products, in descending order
 
+-- Total Cost: 0.019445
 select count(ProductID) as ProductsCount,
        CategoryName
 from Products
          join Categories C on Products.CategoryID = C.CategoryID
 group by CategoryName
 order by count(ProductID) desc;
+
+
+-- Total cost 0.019445
+select C.CategoryName
+     , count(ProductID) as NoOfProducts
+from Categories C
+         join Products P on C.CategoryID = P.CategoryID
+group by C.CategoryName
+order by NoOfProducts desc;
+
+-- Total cost: 0.00928402
+-- non-dedu
+select C.CategoryName
+     , count(ProductID) over (partition by C.CategoryName) as NoOfProducts
+from Categories C
+         join Products P on C.CategoryID = P.CategoryID;
+
+-- Total cost: 0.0212145
+select distinct C.CategoryName
+              , count(ProductID) over (partition by C.CategoryName) as NoOfProducts
+from Categories C
+         join Products P on C.CategoryID = P.CategoryID
+order by NoOfProducts desc;
+
+-- Total cost: 0.0212145
+select T.CategoryName
+     , T.NoOfProducts
+from (
+         select C.CategoryName
+              , count(ProductID) over (partition by C.CategoryName) as NoOfProducts
+         from Categories C
+                  join Products P on C.CategoryID = P.CategoryID) as T
+group by T.CategoryName, T.NoOfProducts
+order by NoOfProducts desc;
+
+-- Total cost: 0.0327374
+select *
+from (
+         select C.CategoryName
+              , count(ProductID) over (partition by C.CategoryName) as NoOfProducts
+              , row_number() over (partition by C.CategoryID order by CategoryName) as Rank
+         from Categories C
+                  join Products P on C.CategoryID = P.CategoryID) as T
+where T.Rank < 2
+order by NoOfProducts desc;
 
 -- 21. In the Customers table, show the total number of
 -- customers per Country and City.
