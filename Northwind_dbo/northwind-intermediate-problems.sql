@@ -63,12 +63,22 @@ order by NoOfProducts desc;
 select count(CustomerID)
 from Customers;
 
+-- Total cost: 0.029534
 select Country,
        City,
        count(CustomerID) as Count
 from Customers
 group by Country, City
 order by count(CustomerID) desc;
+
+-- Total cost: 0.04453344
+select City
+     , count(CustomerID) over (partition by City)    as CityCount
+     , Country
+     , count(CustomerID) over (partition by Country) as CountryCount
+from Customers
+order by CountryCount desc;
+
 
 -- 22.What products do we have in our inventory that
 -- should be reordered? For now, just use the fields
