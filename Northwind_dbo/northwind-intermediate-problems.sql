@@ -87,6 +87,7 @@ order by CountryCount desc;
 -- UnitsOnOrder and Discontinued.
 -- Order the results by ProductID.
 
+-- Total cost: 0.0033667
 select ProductID
      , ProductName
      , UnitsInStock
@@ -95,7 +96,7 @@ from Products
 where UnitsInStock < ReorderLevel
 order by ProductID;
 
--- 23. Now we need to incorporate these fields—
+-- 23. Now we need to incorporate these fields:
 -- UnitsInStock, UnitsOnOrder, ReorderLevel,
 -- Discontinued—into our calculation. We’ll define
 -- “products that need reordering” with the following:
@@ -103,13 +104,16 @@ order by ProductID;
 -- or equal to ReorderLevel.
 -- The Discontinued flag is false (0).
 
-select UnitsInStock,
+select ProductID,
+       ProductName,
+       UnitsInStock,
        UnitsOnOrder,
        ReorderLevel,
        Discontinued
 from Products
 where (UnitsInStock + UnitsOnOrder) <= ReorderLevel
-  and Discontinued = 0;
+  and Discontinued = 0
+order by ProductID;
 
 -- 24. A salesperson for Northwind is going on a business
 -- trip to visit customers, and would like to see a list of
@@ -120,9 +124,16 @@ where (UnitsInStock + UnitsOnOrder) <= ReorderLevel
 -- Within the same region, companies should be sorted
 -- by CustomerID.
 
+-- Total cost: 0.0171581
 select *
 from Customers
 order by IIF(Region is null, 1, 0), Region, CustomerID;
+
+select *
+from Customers
+order by (case
+              when Region is null then 1
+              else 0 end), Region, CustomerID;
 
 
 -- 25. Some of the countries we ship to have very high
