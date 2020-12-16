@@ -50,7 +50,7 @@ order by NoOfProducts desc;
 select *
 from (
          select C.CategoryName
-              , count(ProductID) over (partition by C.CategoryName) as NoOfProducts
+              , count(ProductID) over (partition by C.CategoryName)                 as NoOfProducts
               , row_number() over (partition by C.CategoryID order by CategoryName) as Rank
          from Categories C
                   join Products P on C.CategoryID = P.CategoryID) as T
@@ -87,8 +87,10 @@ order by CountryCount desc;
 -- UnitsOnOrder and Discontinued.
 -- Order the results by ProductID.
 
-select UnitsInStock,
-       ReorderLevel
+select ProductID
+     , ProductName
+     , UnitsInStock
+--      , ReorderLevel
 from Products
 where UnitsInStock < ReorderLevel
 order by ProductID;
