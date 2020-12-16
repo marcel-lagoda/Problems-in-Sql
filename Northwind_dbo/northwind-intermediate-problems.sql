@@ -149,6 +149,24 @@ from Orders
 group by ShipCountry
 order by avg(Freight) desc;
 
+
+-- No of Orders per ShipCountry
+select ShipCountry
+     , count(*)
+from Orders
+group by ShipCountry;
+
+-- All stats
+select distinct ShipCountry
+              , count(Freight) over (partition by ShipCountry) as CountOfFrights
+              , avg(Freight) over (partition by ShipCountry)   as AVG_Country
+              , max(Freight) over (partition by ShipCountry)   as MAX_Country
+              , min(Freight) over (partition by ShipCountry)   as MIN_Country
+              , sum(Freight) over (partition by ShipCountry)   as SUM_Country
+from Orders
+order by MAX_Country desc;
+
+
 -- 26. We're continuing on the question above on high
 -- freight charges. Now, instead of using all the orders
 -- we have, we only want to see orders from the year
