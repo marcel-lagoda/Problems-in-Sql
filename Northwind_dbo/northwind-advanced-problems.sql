@@ -11,13 +11,14 @@
 select Customers.CustomerID,
        Customers.CompanyName,
        O.OrderID,
-       TotalValue = sum(UnitPrice * Quantity)
+       TotalValue = sum(UnitPrice * Quantity),
+       O.OrderDate
 from Customers
          join Orders O on Customers.CustomerID = O.CustomerID
          join OrderDetails OD on O.OrderID = OD.OrderID
 where OrderDate >= '2016-01-01'
   and OrderDate < '2017-01-01'
-group by Customers.CustomerID, Customers.CompanyName, O.OrderID
+group by Customers.CustomerID, Customers.CompanyName, O.OrderID, O.OrderDate
 having sum(UnitPrice * Quantity) >= 10000
 order by TotalValue desc;
 
@@ -34,8 +35,6 @@ group by Customers.CustomerID, Customers.CompanyName, O.OrderID
 having sum(Quantity * UnitPrice) > 10000
 order by TotalValue desc;
 
---  TotalValue = (UnitPrice * Quantity)
--- Czy mogę coś takiego zrobić w mysqlu?
 
 -- 33. The manager has changed his mind. Instead of
 -- requiring that customers have at least one individual
@@ -44,6 +43,7 @@ order by TotalValue desc;
 -- totaling $15,000 or more in 2016. How would you
 -- change the answer to the problem above?
 
+-- Total cost: 0.125612
 select Customers.CustomerID,
        Customers.CompanyName,
        sum(OD.Quantity * OD.UnitPrice) as TotalValue
@@ -56,24 +56,37 @@ group by Customers.CustomerID, Customers.CompanyName
 having sum(Quantity * UnitPrice) > 15000
 order by TotalValue desc;
 
+
+-- Total cost: 0.14045
+select *
+from (
+         select distinct CompanyName
+                       , sum(UnitPrice * OD.Quantity) over (partition by O.CustomerID) as Totals
+         from Customers
+                  join Orders O on Customers.CustomerID = O.CustomerID
+                  join OrderDetails OD on O.OrderID = OD.OrderID
+         where OrderDate between '2016-01-01' and '2017-01-01') as T
+where Totals >= 15000
+order by Totals desc;
+
+
 -- 34. Change the above query to use the discount when
 -- calculating high-value customers. Order by the total
 -- amount which includes the discount.
 
 select Customers.CustomerID,
        Customers.CompanyName,
-       sum(OD.UnitPrice * OD.Quantity)                            as TotalValue,
-       OD.Discount,
-       (IIF(OD.Discount = 0, sum(OD.Quantity * OD.UnitPrice),
-            sum(OD.Quantity * OD.UnitPrice * (1 - OD.Discount)))) as TotalValueDiscounted
+       sum(OD.UnitPrice * OD.Quantity)                     as TotalValue,
+       sum(OD.Quantity * OD.UnitPrice * (1 - OD.Discount)) as TotalValueDiscounted
 from Customers
          join Orders O on Customers.CustomerID = O.CustomerID
          join OrderDetails OD on O.OrderID = OD.OrderID
 where OrderDate >= '2016-01-01'
   and OrderDate < '2017-01-01'
-group by Customers.CustomerID, Customers.CompanyName, OD.Discount
+group by Customers.CustomerID, Customers.CompanyName
 having sum(Quantity * UnitPrice * (1 - Discount)) > 10000
 order by TotalValueDiscounted desc;
+
 
 -- 35. At the end of the month, salespeople are likely to try
 -- much harder to get orders, to meet their month-end
@@ -321,7 +334,7 @@ from Employees
          left join LateOrders
                    on LateOrders.EmployeeID = Employees.EmployeeID
 
---
+-- % of Not Late Orders
 
 with AllOrders as
     (
@@ -343,8 +356,9 @@ select                 Employees.EmployeeID
      , AllOrders     = AllOrders.TotalOrders
      , NotLateOrders = NotLateOrders.TotalOrders
      ,                 format(100.00 * sum(NotLateOrders.TotalOrders) over (partition by Employees.EmployeeID) /
-                              sum(AllOrders.TotalOrders) over (partition by Employees.EmployeeID), 'N2') as NotLate
-     ,                 AllOrders.TotalOrders - NotLateOrders.TotalOrders
+                              sum(AllOrders.TotalOrders) over (partition by Employees.EmployeeID), 'N2') +
+                       '%' as NotLatePrc
+--      ,                 AllOrders.TotalOrders - NotLateOrders.TotalOrders
 from Employees
          join AllOrders
               on AllOrders.EmployeeID = Employees.EmployeeID
@@ -369,30 +383,31 @@ from Employees
 
 
 -- windows functions (with no of orders)
-select distinct                     Customers.CustomerID
+select distinct Customers.CustomerID
               , TotalOrdersAmount = sum(OD.UnitPrice * OD.Quantity) over (partition by Customers.CustomerID)
               , CustomerGroupName = (
-                                        case
-                                            when sum(OD.UnitPrice * OD.Quantity)
-                                                     over (partition by Customers.CustomerID) between 0 and 1000
-                                                then 'low'
-                                            when sum(OD.UnitPrice * OD.Quantity)
-                                                     over (partition by Customers.CustomerID) between 1001 and 5000
-                                                then 'medium'
-                                            when sum(OD.UnitPrice * OD.Quantity)
-                                                     over (partition by Customers.CustomerID) between 5001 and 10000
-                                                then 'high'
-                                            when sum(OD.UnitPrice * OD.Quantity)
-                                                     over (partition by Customers.CustomerID) > 10000
-                                                then 'very high'
-                                            end
-                                        )
-              ,                     count(O.OrderID) over (partition by Customers.CustomerID) as CutomersOrders
+    case
+        when sum(OD.UnitPrice * OD.Quantity)
+                 over (partition by Customers.CustomerID) between 0 and 1000
+            then 'low'
+        when sum(OD.UnitPrice * OD.Quantity)
+                 over (partition by Customers.CustomerID) between 1001 and 5000
+            then 'medium'
+        when sum(OD.UnitPrice * OD.Quantity)
+                 over (partition by Customers.CustomerID) between 5001 and 10000
+            then 'high'
+        when sum(OD.UnitPrice * OD.Quantity)
+                 over (partition by Customers.CustomerID) > 10000
+            then 'very high'
+        end
+    )
+              , CustomersOrders   = count(O.OrderID) over (partition by Customers.CustomerID)
 from Customers
          join Orders O on Customers.CustomerID = O.CustomerID
          join OrderDetails OD on O.OrderID = OD.OrderID
 where OrderDate between '2015-12-31' and '2017-01-01'
-order by CustomerID;
+-- order by CustomerID;
+order by CustomersOrders desc;
 
 -- CTE
 with CTE as
@@ -445,4 +460,112 @@ order by CustomerID;
 
 -- 50. Based on the above query, show all the defined CustomersGroups
 -- and the percentage in each. Sort by the total in each group, in descending order.
+
+with Orders2016 as (
+    select Customers.CustomerID
+         , Customers.CompanyName
+         , TotalOrderAmount = sum(OD.Quantity * OD.UnitPrice)
+    from Customers
+             join Orders O on Customers.CustomerID = O.CustomerID
+             join OrderDetails OD on O.OrderID = OD.OrderID
+    where OrderDate >= '2016-01-01'
+      and OrderDate < '2017-01-01'
+    group by Customers.CustomerID, Customers.CompanyName
+)
+   , CustomersGroups as
+    (
+        select CustomerID
+             , CompanyName
+             , TotalOrderAmount
+             , CustomerGroup =
+            (
+                case
+                    when
+                        TotalOrderAmount >= 0 and TotalOrderAmount < 1000
+                        then 'low'
+                    when TotalOrderAmount >= 1000 and TotalOrderAmount < 5000
+                        then 'Medium'
+                    when TotalOrderAmount >= 5000 and TotalOrderAmount < 10000
+                        then 'High'
+                    when TotalOrderAmount >= 10000 then 'VeryHigh'
+                    end
+                )
+        from Orders2016
+    )
+select CustomerGroup
+     , TotalInGroup      = Count(*)
+     , PercentageInGroup = Count(*) * 1.0 / (select count(*) from CustomersGroups)
+from CustomersGroups
+group by CustomerGroup
+order by TotalInGroup desc;
+
+
+-----
+
+;
+with CustomerGroupsTresholds as
+         (
+             select Orders.OrderID
+                  , CustomerGroups = (
+                 case
+                     when sum(O.Quantity * O.UnitPrice) over (partition by Orders.CustomerID) between 0 and 999.99
+                         then 'low'
+                     when sum(O.Quantity * O.UnitPrice) over (partition by Orders.CustomerID) between 1000 and 4999.99
+                         then 'medium'
+                     when sum(O.Quantity * O.UnitPrice) over (partition by Orders.CustomerID) between 5000 and 9999.99
+                         then 'high'
+                     when sum(O.Quantity * O.UnitPrice) over (partition by Orders.CustomerID) > 10000
+                         then 'very high'
+                     end
+                 )
+             from Orders
+                      join OrderDetails O on Orders.OrderID = O.OrderID
+             where Orders.OrderDate > '2016-01-01'
+               and Orders.OrderDate < '2017-01-01'
+         )
+select Orders.CustomerID
+     , CustomerGroupsTresholds.CustomerGroups
+from Orders
+         join OrderDetails on Orders.OrderID = OrderDetails.OrderID
+         join CustomerGroupThresholds on OrderDetails.OrderID = CustomerGroupsTresholds.OrderID;
+
+-- 52. List all countries where suppliers and/or customers are based.
+
+select Country
+from Customers
+union
+select Country
+from Suppliers;
+
+-- 53. The employees going on the business trip don't want just a raw list of countries,
+-- they want more details. We'd like to see output like the below, in the Expected Results.
+
+with SuppliersCountries as
+    (
+        select distinct Country
+        from Suppliers
+    )
+   , CustomersCountries as
+    (
+        select distinct Country
+        from Customers
+    )
+select SupplierCountry  = SuppliersCountries.Country
+     , CustomersCountry = CustomersCountries.Country
+from SuppliersCountries
+         full join CustomersCountries
+                   on SuppliersCountries.Country = CustomersCountries.Country;
+
+
+-- 54. The output of the above is improved, but it's still not ideal.
+-- What we'd really like to see is the country name, the total supplies, and the total customers.
+
+select Customers.Country
+     , count(Customers.Country) over (partition by Customers.CustomerID) as T
+from Customers
+
+
+
+
+
 
