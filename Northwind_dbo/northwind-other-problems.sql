@@ -8,7 +8,7 @@ select distinct Customers.CustomerID
         when count(OrderID) over (partition by O.CustomerID) >= 15 then 'High'
         when count(OrderID) over (partition by O.CustomerID) < 15
             and count(OrderID) over (partition by O.CustomerID) >= 10 then 'Medium'
-        when count(OrderID) over (partition by O.CustomerID) < 10 then 'low'
+        when count(OrderID) over (partition by O.CustomerID) < 10 then 'Low'
         end
     )
 from Customers
