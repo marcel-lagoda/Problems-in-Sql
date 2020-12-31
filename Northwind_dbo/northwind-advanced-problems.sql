@@ -22,17 +22,20 @@ group by Customers.CustomerID, Customers.CompanyName, O.OrderID, O.OrderDate
 having sum(UnitPrice * Quantity) >= 10000
 order by TotalValue desc;
 
-select Customers.CustomerID,
-       Customers.CompanyName,
-       O.OrderID,
-       sum(Quantity * UnitPrice) as TotalValue
-from Customers
-         join Orders O on Customers.CustomerID = O.CustomerID
-         join OrderDetails OD on O.OrderID = OD.OrderID
-where OrderDate >= '2016-01-01'
-  and OrderDate < '2017-01-01'
-group by Customers.CustomerID, Customers.CompanyName, O.OrderID
-having sum(Quantity * UnitPrice) > 10000
+-- window function
+select *
+from (
+         select distinct Customers.CustomerID,
+                         Customers.CompanyName,
+                         O.OrderID,
+                         sum(Quantity * UnitPrice) over (partition by O.OrderID) as TotalValue
+         from Customers
+                  join Orders O on Customers.CustomerID = O.CustomerID
+                  join OrderDetails OD on O.OrderID = OD.OrderID
+         where OrderDate >= '2016-01-01'
+           and OrderDate < '2017-01-01'
+     ) as t
+where TotalValue >= 10000
 order by TotalValue desc;
 
 
@@ -539,7 +542,9 @@ from Suppliers;
 
 -- 53. The employees going on the business trip don't want just a raw list of countries,
 -- they want more details. We'd like to see output like the below, in the Expected Results.
+-- (Customer/ Supplier country profile).
 
+-- cte
 with SuppliersCountries as
     (
         select distinct Country
@@ -556,16 +561,102 @@ from SuppliersCountries
          full join CustomersCountries
                    on SuppliersCountries.Country = CustomersCountries.Country;
 
+-- full join
+select distinct S.Country as SupplierCountry
+              , C.Country as CustomerCountry
+from Suppliers S
+         full join Customers C on C.Country = S.Country;
+
 
 -- 54. The output of the above is improved, but it's still not ideal.
 -- What we'd really like to see is the country name, the total supplies, and the total customers.
 
-select Customers.Country
-     , count(Customers.Country) over (partition by Customers.CustomerID) as T
-from Customers
+-- 1 (2 x Country) CTEs
+with Customers_CTE (Country, TotalCustomers) as
+    (
+        select Country  as Country
+             , count(*) as TotalCustomers
+        from Customers
+        group by Country
+    )
+   , Suppliers_CTE (Country, TotalCustomers) as
+    (
+        select Country  as Country
+             , count(*) as TotalSuppliers
+        from Suppliers
+        group by Country
+    )
+select Customers_CTE.Country        as CustomerCountry
+     , Customers_CTE.TotalCustomers as Customers
+     , Suppliers_CTE.Country        as SupplierCountry
+     , Suppliers_CTE.TotalCustomers as Supplier
+from Suppliers_CTE
+         full join Customers_CTE on Customers_CTE.Country = Suppliers_CTE.Country;
+
+-- (1 X Country)
+with Customers_CTE (Country, TotalCustomers) as
+    (
+        select Country  as Country
+             , count(*) as TotalCustomers
+        from Customers
+        group by Country
+    )
+   , Suppliers_CTE (Country, TotalCustomers) as
+    (
+        select Country  as Country
+             , count(*) as TotalSuppliers
+        from Suppliers
+        group by Country
+    )
+select isnull(Customers_CTE.Country, Suppliers_CTE.Country) as Country
+     , isnull(Customers_CTE.TotalCustomers, 0)              as Customers
+     , isnull(Suppliers_CTE.TotalCustomers, 0)              as Supplier
+from Suppliers_CTE
+         full join Customers_CTE on Customers_CTE.Country = Suppliers_CTE.Country;
 
 
+select distinct Country,
+                count(*) over (partition by Country) as T
+from Customers;
+
+select distinct Country,
+                count(*) over (partition by Country) as T
+from Suppliers;
 
 
+-- 55. First order in each country.
+-- 1.
+with CTE (OrderID, CustomerID, OrderDate, ShipCountry, FirstOrder) as
+         (
+             select OrderID                                                                    as OrderID
+                  , CustomerID                                                                 as CustomerID
+                  , OrderDate                                                                  as OrderDate
+                  , ShipCountry                                                                as ShipCountry
+                  , row_number() over (partition by ShipCountry order by ShipCountry, OrderID) as FirstOrder
+             from Orders
+         )
+select *
+from CTE
+where FirstOrder = 1;
 
 
+-- 2.
+select *
+from (
+         select OrderID
+              , CustomerID
+              , OrderDate
+              , ShipCountry
+              , row_number() over (partition by ShipCountry order by ShipCountry, OrderID) as Rows
+         from Orders
+     ) as T1
+where T1.Rows = 1;
+
+-- 56. Customers with multiple orders in 5 day period.
+-- Show those customers who have made more than 1 order in 5 day period.
+
+
+-- select OrderID,
+--        CustomerID,
+--        OrderDate
+-- from Orders;
