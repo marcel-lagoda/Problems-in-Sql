@@ -7,4 +7,4 @@
 
 ### Queries
 
-1. [Return the bottom sales results. Provide number of total orders & the last order date.]()
+1. [Return the bottom sales results. Provide number of total orders & the last order date.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b0bf972303e89d225be5bc91bc8e5848217d3aae/AdventureWorks_db/adventureWorks_random_problems.sql#L2-L42)
