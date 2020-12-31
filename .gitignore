@@ -123,6 +123,6 @@ tags
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
+.run
 # End of https://www.toptal.com/developers/gitignore/api/vim,visualstudiocode,pycharm+all
 
