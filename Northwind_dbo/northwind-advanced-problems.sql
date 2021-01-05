@@ -656,7 +656,47 @@ where T1.Rows = 1;
 -- Show those customers who have made more than 1 order in 5 day period.
 
 
--- select OrderID,
---        CustomerID,
---        OrderDate
--- from Orders;
+select InitialOrder.CustomerID
+     , InitialOrder.OrderID                                     as InitialOrderID
+     , cast(InitialOrder.OrderDate as date)                     as InitialOrderDate
+     , NextOrder.OrderID                                        as NextOrderID
+     , cast(NextOrder.OrderDate as date)                        as NextOrderDateID
+     , datediff(d, InitialOrder.OrderDate, NextOrder.OrderDate) as DaysInBetween
+from Orders as InitialOrder
+         join Orders as NextOrder on InitialOrder.CustomerID = NextOrder.CustomerID
+where NextOrder.OrderID > InitialOrder.OrderID
+  and datediff(dd, InitialOrder.OrderDate, NextOrder.OrderDate) <= 5
+order by datediff(d, InitialOrder.OrderDate, NextOrder.OrderDate);
+
+
+-- 57. Customers with multiple order in 5 days period (window functions).
+
+with NextOrderDate as (
+    select CustomerID
+         , OrderDate     = convert(date, OrderDate)
+         , NextOrderDate = convert(date,
+            Lead(OrderDate, 1) over (partition by CustomerID order by CustomerID, OrderDate))
+    from Orders
+)
+select CustomerID
+     , OrderDate
+     , NextOrderDate
+     , DaysInBetween = datediff(d, OrderDate, NextOrderDate)
+from NextOrderDate
+where datediff(d, OrderDate, NextOrderDate) <= 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
