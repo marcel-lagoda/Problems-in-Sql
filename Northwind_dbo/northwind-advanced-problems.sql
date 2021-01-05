@@ -685,18 +685,4 @@ select CustomerID
 from NextOrderDate
 where datediff(d, OrderDate, NextOrderDate) <= 5;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- End of advanced problems.
