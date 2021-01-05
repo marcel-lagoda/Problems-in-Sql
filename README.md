@@ -8,5 +8,6 @@ This repo contains varied SQL challenges solved in SQL different technologies.
 3. [Zad_1 db](Zad_1)
 4. [Zadanie_2 db](Zadanie_2)
 5. [AdventureWorks_db](AdventureWorks_db)
+6. [Zapytania-w-SQL](Zapytania-w-SQL)
 
  
