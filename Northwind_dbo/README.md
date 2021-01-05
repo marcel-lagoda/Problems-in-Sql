@@ -69,8 +69,8 @@ There are 57 beginning, intermediate and advanced SQL challenges in total.
 53. [Countries with suppliers or customers, version 2.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/ab58e2a44985932966d4e6df570079685e9e9579/Northwind_dbo/northwind-advanced-problems.sql#L543-L568)
 54. [Countries with suppliers or customers - version 3.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/ab58e2a44985932966d4e6df570079685e9e9579/Northwind_dbo/northwind-advanced-problems.sql#L571-L624)
 55. [First order in each country.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/ab58e2a44985932966d4e6df570079685e9e9579/Northwind_dbo/northwind-advanced-problems.sql#L627-L653)
-56. [Customers with multiple orders in 5 day period.]()
-57. [Customers with multiple orders in 5 day period, version 2.]()
+56. [Customers with multiple orders in 5 day period.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/ed4ca34b1ddbc16179e548bfcda518f0de4031e2/Northwind_dbo/northwind-advanced-problems.sql#L655-L669)
+57. [Customers with multiple orders in 5 day period, version 2.](https://github.com/marcel-lagoda/Problems-in-Sql/blob/ed4ca34b1ddbc16179e548bfcda518f0de4031e2/Northwind_dbo/northwind-advanced-problems.sql#L672-L686:)
 
 
 ---
