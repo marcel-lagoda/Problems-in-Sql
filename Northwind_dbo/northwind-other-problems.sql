@@ -1,5 +1,7 @@
+---------------------------------------------------------------------------
 -- 1 Categorize customers into groups, based on the number of their orders.
--- 1.1
+---------------------------------------------------------------------------
+-- 1.1.
 select distinct Customers.CustomerID
               , CompanyName
               , NumberOfOrders   = count(OrderID) over (partition by O.CustomerID)
@@ -15,6 +17,7 @@ from Customers
          join Orders O on Customers.CustomerID = O.CustomerID
 order by NumberOfOrders desc;
 
+-- 1.2.
 select distinct Customers.CustomerID
               , CompanyName
               , NumberOfOrders =
@@ -28,6 +31,7 @@ group by Customers.CustomerID, CompanyName
 order by NumberOfOrders;
 
 
+-- 1.3.
 with CTE as (
     select Customers.CustomerID
          , CompanyName
@@ -41,8 +45,9 @@ select CTE.CompanyName
        (case end)
 
 
-------------------------------------------
+---------------------------------------------
 -- 2. Assign a sequential number to each row.
+---------------------------------------------
 -- 2.1. Very high overhead (using subquery).
 select o1.CustomerID
      , o1.OrderID
@@ -64,6 +69,7 @@ from Orders;
 
 -----------------------------------------------------------------------------
 -- 3. Create collections
+-----------------------------------------------------------------------------
 select C1.Country
      , stuff((
                  select distinct ',' + C2.City
@@ -75,8 +81,9 @@ from dbo.Customers C1
 group by C1.Country;
 
 
-----------------------------------------------
+---------------------------------------------------
 -- 4. Select the very last order for each customer.
+---------------------------------------------------
 -- 4.1. Correlated where sub-query.
 select *
 --        [CustomerID]
@@ -127,37 +134,63 @@ select distinct CustomerID
 from Orders;
 ------------------------------------------------------------------------------------------------
 
-select OrderID,
-       CustomerID,
-       EmployeeID,
-       OrderDate,
-       RequiredDate,
-       ShippedDate,
-       ShipVia,
-       Freight,
-       ShipName,
-       ShipAddress,
-       ShipCity,
-       ShipRegion,
-       ShipPostalCode,
-       ShipCountry,
-       (
-           select count(*)
-           from Orders o2
-           where o2.CustomerID = o1.CustomerID
-       ) as NumberOfOrders
-from Orders o1
+--------------------------------------------------------------------
+-- 5. # of Orders by different dimensions (totals, years, quarters).
+--------------------------------------------------------------------
+
+-- group by grouping sets
+select year(OrderDate)        as [Year]
+     , datepart(q, OrderDate) as [Q]
+     , count(OrderID)         as [Total Orders]
+from [dbo].[Orders]
+group by grouping sets
+       (()
+       , (year(OrderDate))
+       , (year(OrderDate), datepart(q, OrderDate)))
+order by 1, 2;
 
 
-select stuff(FirstName + N' ' + LastName, 1, charindex(N' ', FirstName + N' ' + LastName) - 1,
-             replicate(N'X', len(FirstName))) as HiddenName
-from dbo.Employees
+-- Cube
+select year(OrderDate)        as [Year]
+     , datepart(q, OrderDate) as [Q]
+     , count(OrderID)         as [Total Orders]
+from [dbo].[Orders]
+group by cube (year(OrderDate), datepart(q, OrderDate))
+order by 1, 2;
 
-USE Northwind
-GO
 
-SELECT 'Hired : ' +  CAST (HireDate as varchar(10)) as konwersjaCast,
-        CONVERT(varchar(10),HireDate, 113) as KonwersjaConvertStyles,
-        CAST(CAST (HireDate as date) as varchar(10)) as DblCast,
-        HireDate
-FROM dbo.Employees
+-- Rollup
+-- Total cost: 0.0443392
+select year(OrderDate)        as [Year]
+     , datepart(q, OrderDate) as [Q]
+     , count(OrderID)         as [Order Totals]
+from [dbo].[Orders]
+group by rollup (year(OrderDate), datepart(q, OrderDate))
+order by 1, 2;
+
+
+-- Union & group by
+-- Total cost: 0.0744286
+select 1              as [Level]
+     , null           as [Year]
+     , null           as [Q]
+     , count(OrderID) as [OrdersTotals]
+from [dbo].[Orders]
+-- where Year(OrderDate) in (2015, 2016)
+union
+select 2
+     , Year(OrderDate)
+     , null
+     , count(OrderID)
+from [dbo].[Orders]
+-- where year(OrderDate) in (2015, 2016)
+group by Year(OrderDate)
+union
+select 3
+     , Year(OrderDate)
+     , datepart(q, OrderDate)
+     , count(OrderID)
+from [dbo].[Orders]
+-- where year(OrderDate) in (2015, 2016)
+group by year(OrderDate), datepart(q, OrderDate)
+order by 2, 1;
