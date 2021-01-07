@@ -76,10 +76,7 @@ There are 57 beginning, intermediate and advanced SQL challenges in total.
 
 
 ---
- 
-## Northwind DB Schema
 
-![database Northwind schema](images/Northwind_dbo.png)
 
 ## Technologies
 
