@@ -7,8 +7,6 @@ This file contains:
 1. Solutions to the book __SQL Practice Problem__ by Sylvia Moestl Vasilik.
 There are 57 beginning, intermediate and advanced SQL challenges in total.
 
-2. Other Northwind database SQL queries. 
-
 #### Introductory Problems
 
 1. [Which shippers do we have?](https://github.com/marcel-lagoda/Problems-in-Sql/blob/b6147f9a1e5ceef411ef0f73674f6b9cef8f2a6f/Northwind_dbo/northwind-introductory-problems.sql#L5)
