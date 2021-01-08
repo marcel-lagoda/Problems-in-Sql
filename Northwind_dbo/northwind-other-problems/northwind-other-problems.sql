@@ -171,7 +171,8 @@ group by grouping sets
        (()
        , (year(OrderDate))
        , (year(OrderDate), datepart(q, OrderDate)))
-order by 1, 2;
+order by 1, 2
+go
 
 
 -- Cube
