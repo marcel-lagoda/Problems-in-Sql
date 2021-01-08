@@ -138,6 +138,30 @@ from Orders;
 -- 5. # of Orders by different dimensions (totals, years, quarters).
 --------------------------------------------------------------------
 
+-- group by + grouping/grouping_id
+select year(OrderDate)                                              as [year]
+     , datepart(q, OrderDate)                                       as [Q]
+     , count(OrderID)                                               as [total orders]
+     , grouping(year(OrderDate))                                    as [year-wise]
+     , grouping(datepart(q, OrderDate))                             as [Q-wise]
+     , grouping(year(OrderDate)) + grouping(datepart(q, OrderDate)) as [level]
+from [dbo].[Orders]
+group by cube (year(OrderDate), datepart(q, OrderDate))
+order by 1, 2
+go
+
+select year(OrderDate)                                        as [year]
+     , datepart(q, OrderDate)                                 as [Q]
+     , count(OrderID)                                         as [total orders]
+     , grouping(year(OrderDate))                              as [year-wise]
+     , grouping(datepart(q, OrderDate))                       as [Q-wise]
+     , grouping_id(year(OrderDate), (datepart(q, OrderDate))) as [binary-level]
+from [dbo].[Orders]
+group by cube (year(OrderDate), datepart(q, OrderDate))
+order by 1, 2
+go
+
+
 -- group by grouping sets
 select year(OrderDate)        as [Year]
      , datepart(q, OrderDate) as [Q]
