@@ -43,6 +43,10 @@ from Employees;
 
 select *
 from Orders
+where EmployeeID = 5;
+
+select *
+from Orders
          join Employees E on Orders.EmployeeID = E.EmployeeID
 where E.EmployeeID = 5;
 
@@ -132,7 +136,7 @@ select OrderID,
        ProductID,
        UnitPrice,
        Quantity,
-       format(UnitPrice + Quantity, 'N2') as TotalPrice
+       format(UnitPrice * Quantity, 'N2') as TotalPrice
 from OrderDetails;
 
 -- 14. How many customers do we have in Customers table?
@@ -164,6 +168,12 @@ from Customers
 group by ContactTitle
 order by Count(ContactTitle) desc;
 
+select distinct ContactTitle,
+count (*) over (partition by ContactTitle) as Count
+from Customers
+order by Count desc;
+
+
 -- 18. We’d like to show, for each product, the associated
 -- Supplier. Show the ProductID, ProductName, and the
 -- CompanyName of the Supplier. Sort by ProductID.
@@ -185,6 +195,18 @@ select OrderID,
        CompanyName
 from Orders natural
          join Shippers S on S.ShipperID = natural.ShipVia
+order by OrderID;
+
+select OrderID, cast(OrderDate as date) AS OrderDate, CompanyName
+from Orders, Shippers
+order by OrderID
+
+
+select OrderID,
+       cast(OrderDate as DATE),
+       CompanyName
+from Orders O
+         join Shippers S on S.ShipperID = O.ShipVia
 order by OrderID;
 
 -- The end of Introductory Problems.

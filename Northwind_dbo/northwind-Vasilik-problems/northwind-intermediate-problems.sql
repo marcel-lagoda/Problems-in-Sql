@@ -12,6 +12,12 @@ from Products
 group by CategoryName
 order by count(ProductID) desc;
 
+SELECT distinct COUNT(*) OVER (PARTITION BY Cat.CategoryName) AS TotalProducts, 
+       Cat.CategoryName
+FROM Products Pr
+JOIN Categories Cat ON Pr.CategoryID = Cat.CategoryID
+ORDER BY count(ProductID) desc;
+
 
 -- Total cost 0.019445
 select C.CategoryName
