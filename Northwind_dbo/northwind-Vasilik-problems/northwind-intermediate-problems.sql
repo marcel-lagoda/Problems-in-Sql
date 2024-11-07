@@ -18,6 +18,17 @@ FROM Products Pr
 JOIN Categories Cat ON Pr.CategoryID = Cat.CategoryID
 ORDER BY count(ProductID) desc;
 
+--
+WITH ProductCounts AS (SELECT P.CategoryID
+                            , COUNT(ProductID) AS totalNumOfProducts
+                       FROM Products P
+                       GROUP BY CategoryID)
+SELECT C.CategoryName,
+       PC.totalNumOfProducts
+FROM Categories C
+         JOIN ProductCounts PC ON C.CategoryID = PC.CategoryID
+ORDER BY totalNumOfProducts DESC;
+
 
 -- Total cost 0.019445
 select C.CategoryName
